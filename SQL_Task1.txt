@@ -1,0 +1,29 @@
+CREATE TABLE Film (
+    id int PRIMARY KEY,
+    title VARCHAR(250) NOT NULL,
+    duration INTEGER NOT NULL,
+    director varchar(250) NOT NULL
+);
+
+CREATE TABLE Genre (
+    id int PRIMARY KEY,
+    name VARCHAR(250) NOT NULL
+);
+
+CREATE TABLE Film_Genres (
+    film_id INTEGER NOT NULL,
+    genre_id INTEGER NOT NULL,
+    FOREIGN KEY (film_id) REFERENCES Film(id),
+    FOREIGN KEY (genre_id) REFERENCES Genre(id),
+    PRIMARY KEY (film_id, genre_id)
+);
+INSERT INTO Film (id, title, duration, director) VALUES
+                                                  (1, 'Человек паук', 148, 'Сэм Рейми'),
+                                                  (2, 'Аватар', 162, 'Джеймс Кэмерон');
+
+INSERT INTO Genre (id, name) VALUES (1, 'Фантастика'),
+                                 (2, 'Драма');
+
+INSERT INTO Film_Genres (film_id, genre_id) VALUES
+                                               (1, 1),
+                                               (1, 2);

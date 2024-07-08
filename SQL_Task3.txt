@@ -1,0 +1,42 @@
+CREATE TABLE manufacturer(
+    id int primary key,
+    name varchar(250) not null,
+    rating int not null
+);
+
+insert into manufacturer (id, name, rating) values (1, 'BMW', 1),
+                                                   (2, 'Subaru', 2),
+                                                   (3, 'Porsche', 3),
+                                                   (4, 'Honda', 4),
+                                                   (5, 'Lexus', 5);
+
+CREATE TABLE colors(
+    id int primary key,
+    name varchar(250) not null
+);
+insert into colors (id, name) values (1, 'black'),
+                                     (2, 'red'),
+                                     (3, 'blue'),
+                                     (4, 'gray'),
+                                     (5, 'white');
+
+CREATE TABLE car(
+    id int primary key,
+    model varchar(250) not null,
+    manufacturer_id int,
+    price decimal(10, 2),
+    foreign key (manufacturer_id) references manufacturer(id)
+);
+insert into car (id, model, manufacturer_id, price) values (1, 'X5', 1, 90000),
+                                                           (2, 'RX', 5, 60000),
+                                                           (3, 'Taycan', 3, 190000);
+CREATE TABLE car_color (
+    car_id INT,
+    color_id INT,
+    FOREIGN KEY (car_id) REFERENCES car(id),
+    FOREIGN KEY (color_id) REFERENCES colors(id),
+    PRIMARY KEY (car_id, color_id)
+);
+insert into car_color(car_id, color_id) values (1, 2),
+                                               (2, 2),
+                                               (3, 4);

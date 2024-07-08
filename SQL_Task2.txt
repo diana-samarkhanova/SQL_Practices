@@ -1,0 +1,28 @@
+CREATE TABLE song(
+    song_id int primary key,
+    title varchar(200) NOT NULL,
+    duration int not null
+);
+insert into song(song_id, title, duration) values (1, 'Waka Waka', 202);
+insert into song(song_id, title, duration) values (2, 'La La La', 182);
+insert into song(song_id, title, duration) values (3, 'End Game', 244);
+
+
+CREATE TABLE singer(
+    singer_id int primary key,
+    name varchar(200) NOT NULL
+);
+insert into singer(singer_id, name) values (1, 'Shakira'),
+                                           (2, 'Ed Sheeran'),
+                                           (3, 'Tailor Swift');
+CREATE TABLE song_singer(
+    song_id int,
+    singer_id int,
+    foreign key (song_id) references song(song_id),
+    foreign key (singer_id) references singer(singer_id),
+    primary key(song_id, singer_id)
+);
+insert into song_singer(song_id, singer_id) values (1, 1),
+                                                   (2, 1),
+                                                   (3, 2),
+                                                   (3, 3);
